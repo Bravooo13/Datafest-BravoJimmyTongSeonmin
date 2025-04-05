@@ -16,7 +16,7 @@ houston_rent_trend <- houston_data %>%
   arrange(time)
 
 # Plot the line graph
-ggplot(houston_rent_trend, aes(x = time, y = avg_rent, group = 1)) +
+houston_rent_plot <- ggplot(houston_rent_trend, aes(x = time, y = avg_rent, group = 1)) +
   geom_line(color = "blue", size = 1.2) +
   geom_point(color = "darkblue") +
   labs(title = "Overall Rent Trend in Houston (2018 Q1 – 2024 Q4)",
@@ -38,7 +38,7 @@ houston_availability_prop <- lease_data %>%
 houston_availability_prop$time <- factor(houston_availability_prop$time, levels = unique(houston_availability_prop$time), ordered = TRUE)
 
 # Plot
-ggplot(houston_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
+houston_avail_plot <- ggplot(houston_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
   geom_line(color = "darkred", size = 1.2) +
   geom_point(color = "firebrick", size = 2.5) +
   labs(
@@ -64,7 +64,7 @@ houston_occupancy <- market_occupancy %>%
 houston_occupancy$time <- factor(houston_occupancy$time, levels = unique(houston_occupancy$time), ordered = TRUE)
 
 # Plot the line graph
-ggplot(houston_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1)) +
+houston_occupancy_plot <- ggplot(houston_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1)) +
   geom_line(color = "steelblue", size = 1.2) +
   geom_point(color = "navy", size = 2.5) +
   labs(
@@ -78,6 +78,11 @@ ggplot(houston_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, grou
     plot.title = element_text(face = "bold")
   )
 
+
+############################## Save Graphs ###################################
+ggsave("Plots/houston_rent_trend.png", plot = houston_rent_plot, width = 8, height = 5, dpi = 300)
+ggsave("Plots/houston_availability_trend.png", plot = houston_avail_plot, width = 8, height = 5, dpi = 300)
+ggsave("Plots/houston_occupancy_trend.png", plot = houston_occupancy_plot, width = 8, height = 5, dpi = 300)
 
 
 

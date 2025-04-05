@@ -16,7 +16,7 @@ la_rent_trend <- la_data %>%
   arrange(time)
 
 # Plot the line graph
-ggplot(la_rent_trend, aes(x = time, y = avg_rent, group = 1)) +
+la_rent_plot <- ggplot(la_rent_trend, aes(x = time, y = avg_rent, group = 1)) +
   geom_line(color = "blue", size = 1.2) +
   geom_point(color = "darkblue") +
   labs(title = "Overall Rent Trend in Los Angeles (2018 Q1 – 2024 Q4)",
@@ -38,7 +38,7 @@ la_availability_prop <- lease_data %>%
 la_availability_prop$time <- factor(la_availability_prop$time, levels = unique(la_availability_prop$time), ordered = TRUE)
 
 # Plot
-ggplot(la_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
+la_avail_plot <- ggplot(la_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
   geom_line(color = "darkred", size = 1.2) +
   geom_point(color = "firebrick", size = 2.5) +
   labs(
@@ -65,7 +65,7 @@ la_occupancy <- market_occupancy %>%
 la_occupancy$time <- factor(la_occupancy$time, levels = unique(la_occupancy$time), ordered = TRUE)
 
 # Plot the line graph
-ggplot(la_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1)) +
+la_occupancy_plot <- ggplot(la_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1)) +
   geom_line(color = "steelblue", size = 1.2) +
   geom_point(color = "navy", size = 2.5) +
   labs(
@@ -78,6 +78,12 @@ ggplot(la_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1
     axis.text.x = element_text(angle = 45, hjust = 1),
     plot.title = element_text(face = "bold")
   )
+
+
+############################## Save Graphs ###################################
+ggsave("Plots/la_rent_trend.png", plot = la_rent_plot, width = 8, height = 5, dpi = 300)
+ggsave("Plots/la_availability_trend.png", plot = la_avail_plot, width = 8, height = 5, dpi = 300)
+ggsave("Plots/la_occupancy_trend.png", plot = la_occupancy_plot, width = 8, height = 5, dpi = 300)
 
 
 

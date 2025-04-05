@@ -16,7 +16,7 @@ manhattan_rent_trend <- manhattan_data %>%
   arrange(time)
 
 # Plot the line graph
-ggplot(manhattan_rent_trend, aes(x = time, y = avg_rent, group = 1)) +
+manhattan_rent_plot <- ggplot(manhattan_rent_trend, aes(x = time, y = avg_rent, group = 1)) +
   geom_line(color = "blue", size = 1.2) +
   geom_point(color = "darkblue") +
   labs(title = "Overall Rent Trend in Manhattan (2018 Q1 – 2024 Q4)",
@@ -38,7 +38,7 @@ manhattan_availability_prop <- lease_data %>%
 manhattan_availability_prop$time <- factor(manhattan_availability_prop$time, levels = unique(manhattan_availability_prop$time), ordered = TRUE)
 
 # Plot
-ggplot(manhattan_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
+manhattan_avail_plot <- ggplot(manhattan_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
   geom_line(color = "darkred", size = 1.2) +
   geom_point(color = "firebrick", size = 2.5) +
   labs(
@@ -64,7 +64,7 @@ manhattan_occupancy <- market_occupancy %>%
 manhattan_occupancy$time <- factor(manhattan_occupancy$time, levels = unique(manhattan_occupancy$time), ordered = TRUE)
 
 # Plot the line graph
-ggplot(manhattan_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1)) +
+manhattan_occupancy_plot <- ggplot(manhattan_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, group = 1)) +
   geom_line(color = "steelblue", size = 1.2) +
   geom_point(color = "navy", size = 2.5) +
   labs(
@@ -77,3 +77,12 @@ ggplot(manhattan_occupancy, aes(x = time, y = avg_occupancy_proportion * 100, gr
     axis.text.x = element_text(angle = 45, hjust = 1),
     plot.title = element_text(face = "bold")
   )
+
+
+############################## Save Graphs ###################################
+ggsave("Plots/manhattan_rent_trend.png", plot = manhattan_rent_plot, width = 8, height = 5, dpi = 300)
+ggsave("Plots/manhattan_availability_trend.png", plot = manhattan_avail_plot, width = 8, height = 5, dpi = 300)
+ggsave("Plots/manhattan_occupancy_trend.png", plot = manhattan_occupancy_plot, width = 8, height = 5, dpi = 300)
+
+
+
