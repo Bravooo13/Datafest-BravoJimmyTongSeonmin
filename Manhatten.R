@@ -35,7 +35,7 @@ manhattan_availability_prop <- lease_data %>%
   arrange(time)
 
 # Convert to ordered factor to ensure correct x-axis order
-manhattan_availability_prop$time <- factor(manhattan_availability_prop$time, levels = unique(manhatten_availability_prop$time), ordered = TRUE)
+manhattan_availability_prop$time <- factor(manhattan_availability_prop$time, levels = unique(manhattan_availability_prop$time), ordered = TRUE)
 
 # Plot
 ggplot(manhattan_availability_prop, aes(x = time, y = availability_proportion * 100, group = 1)) +
