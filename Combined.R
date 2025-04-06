@@ -14,7 +14,7 @@ combined_rent_data$time <- factor(combined_rent_data$time, levels = unique(combi
 
 
 ############################# Rent #########################################
-ggplot(combined_rent_data, aes(x = time, y = avg_rent, color = market, group = market)) +
+combined_rent_plot <- ggplot(combined_rent_data, aes(x = time, y = avg_rent, color = market, group = market)) +
   geom_line(size = 1.2) +
   geom_point() +
   geom_vline(xintercept = which(levels(combined_rent_data$time) == "2020.Q2"), 
