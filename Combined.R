@@ -4,7 +4,7 @@ library(ggplot2)
 # Combine rent data for all 3 cities
 combined_rent_data <- lease_data %>%
   filter(market %in% c("Manhattan", "Los Angeles", "Houston")) %>%
-  mutate(time = paste(year, quarter, sep = "")) %>%
+  mutate(time = paste(year, ".", quarter, sep = "")) %>%
   group_by(market, time) %>%
   summarize(avg_rent = mean(overall_rent, na.rm = TRUE)) %>%
   arrange(market, time)
@@ -30,7 +30,7 @@ combined_rent_plot <- ggplot(combined_rent_data, aes(x = time, y = avg_rent, col
 ############################## Availability ################################
 combined_avail_data <- lease_data %>%
   filter(market %in% c("Manhattan", "Los Angeles", "Houston")) %>%
-  mutate(time = paste(year, "Q", quarter, sep = "")) %>%
+  mutate(time = paste(year, ".", quarter, sep = "")) %>%
   group_by(market, time) %>%
   summarize(availability_proportion = first(availability_proportion)) %>%
   arrange(market, time)
@@ -54,7 +54,7 @@ combined_avail_plot <- ggplot(combined_avail_data, aes(x = time, y = availabilit
 ############################## Occupancy ####################################
 combined_occupancy_data <- market_occupancy %>%
   filter(market %in% c("Manhattan", "Los Angeles", "Houston")) %>%
-  mutate(time = paste(year, "Q", quarter, sep = "")) %>%
+  mutate(time = paste(year, ".", quarter, sep = "")) %>%
   arrange(market, year, quarter)
 
 combined_occupancy_data$time <- factor(combined_occupancy_data$time, levels = unique(combined_occupancy_data$time), ordered = TRUE)
