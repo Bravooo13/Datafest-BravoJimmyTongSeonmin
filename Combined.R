@@ -17,9 +17,9 @@ combined_rent_data$time <- factor(combined_rent_data$time, levels = unique(combi
 combined_rent_plot <- ggplot(combined_rent_data, aes(x = time, y = avg_rent, color = market, group = market)) +
   geom_line(size = 1.2) +
   geom_point() +
-  geom_vline(xintercept = which(levels(combined_rent_data$time) == "2020.Q2"), 
+  geom_vline(xintercept = which(levels(combined_rent_data$time) == "2020.Q1"), 
              linetype = "dashed", color = "gray40", size = 1) +
-  annotate("text", x = which(levels(combined_rent_data$time) == "2020.Q2"), y = Inf, 
+  annotate("text", x = which(levels(combined_rent_data$time) == "2020.Q1"), y = Inf, 
            label = "COVID Start", vjust = -0.5, angle = 90, size = 3, color = "gray40") +
   labs(
     title = "Overall Rent Trends (2018–2024)",
@@ -45,9 +45,9 @@ combined_avail_data$time <- factor(combined_avail_data$time, levels = unique(com
 combined_avail_plot <- ggplot(combined_avail_data, aes(x = time, y = availability_proportion * 100, color = market, group = market)) +
   geom_line(size = 1.2) +
   geom_point() +
-  geom_vline(xintercept = which(levels(combined_avail_data$time) == "2020.Q2"),
+  geom_vline(xintercept = which(levels(combined_avail_data$time) == "2020.Q1"),
              linetype = "dashed", color = "gray40", size = 1) +
-  annotate("text", x = which(levels(combined_avail_data$time) == "2020.Q2"), y = Inf,
+  annotate("text", x = which(levels(combined_avail_data$time) == "2020.Q1"), y = Inf,
            label = "COVID Start", vjust = -0.5, angle = 90, size = 3, color = "gray40") +
   labs(
     title = "Availability Proportion Trends (2018–2024)",
@@ -71,10 +71,6 @@ combined_occupancy_data$time <- factor(combined_occupancy_data$time, levels = un
 combined_occupancy_plot <- ggplot(combined_occupancy_data, aes(x = time, y = avg_occupancy_proportion * 100, color = market, group = market)) +
   geom_line(size = 1.2) +
   geom_point() +
-  geom_vline(xintercept = which(levels(combined_occupancy_data$time) == "2020.Q2"),
-             linetype = "dashed", color = "gray40", size = 1) +
-  annotate("text", x = which(levels(combined_occupancy_data$time) == "2020.Q2"), y = Inf,
-           label = "COVID Start", vjust = -0.5, angle = 90, size = 3, color = "gray40") +
   labs(
     title = "Occupancy Proportion Trends (2018–2024)",
     subtitle = "Comparison across Manhattan, Los Angeles, and Houston",
