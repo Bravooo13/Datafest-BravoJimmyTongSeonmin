@@ -39,3 +39,16 @@ tDiD_centered <- lm(
 )
 library(interactions)
 interact_plot(tDiD, pred = "unemployment_rate", modx = "manh", mod2 = "post")
+
+pre_covid <- DiD_data %>%
+  filter(year == c(2018, 2019))
+
+ggplot(pre_covid, aes(x = year, y = overall_rent, color = factor(manh))) +
+  geom_line(stat = "summary", fun = mean) +
+  geom_point(stat = "summary", fun = mean) +
+  labs(title = "Pre-COVID Parallel Trends Check",
+       x = "Year",
+       y = "Average Rent",
+       color = "City") +
+  scale_color_manual(values = c("blue", "red"), labels = c("LA", "Manhattan")) +
+  theme_minimal()
