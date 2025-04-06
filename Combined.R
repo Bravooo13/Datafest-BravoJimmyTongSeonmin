@@ -63,7 +63,7 @@ combined_occupancy_plot <- ggplot(combined_occupancy_data, aes(x = time, y = avg
   geom_line(size = 1.2) +
   geom_point() +
   labs(
-    title = "Occupancy Proportion Trends (2018–2024)",
+    title = "Occupancy Proportion Trends (2020.Q1–2024.Q3)",
     subtitle = "Comparison across Manhattan, Los Angeles, and Houston",
     x = "Quarter",
     y = "Occupancy (%)",
