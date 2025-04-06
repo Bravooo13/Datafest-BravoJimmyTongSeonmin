@@ -12,7 +12,6 @@ combined_rent_data <- lease_data %>%
 # Convert 'time' to ordered factor
 combined_rent_data$time <- factor(combined_rent_data$time, levels = unique(combined_rent_data$time), ordered = TRUE)
 
-
 ############################# Rent #########################################
 combined_rent_plot <- ggplot(combined_rent_data, aes(x = time, y = avg_rent, color = market, group = market)) +
   geom_line(size = 1.2) +
@@ -85,5 +84,10 @@ combined_occupancy_plot <- ggplot(combined_occupancy_data, aes(x = time, y = avg
 ggsave("Plots/combined_rent_trend.png", plot = combined_rent_plot, width = 8, height = 5, dpi = 300)
 ggsave("Plots/combined_availability_trend.png", plot = combined_avail_plot, width = 8, height = 5, dpi = 300)
 ggsave("Plots/combined_occupancy_trend.png", plot = combined_occupancy_plot, width = 8, height = 5, dpi = 300)
+
+write.csv(combined_rent_data, "combined_rent_data", row.names = FALSE)
+write.csv(combined_occupancy_data, "combined_occupancy_data", row.names = FALSE)
+
+
 
 
