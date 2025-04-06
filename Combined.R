@@ -72,7 +72,7 @@ combined_occupancy_plot <- ggplot(combined_occupancy_data, aes(x = time, y = avg
   geom_line(size = 1.2) +
   geom_point() +
   labs(
-    title = "Occupancy Proportion Trends (2018–2024)",
+    title = "Occupancy Proportion Trends (2020.Q1–2024.Q3)",
     subtitle = "Comparison across Manhattan, Los Angeles, and Houston",
     x = "Quarter",
     y = "Occupancy (%)",
@@ -85,9 +85,5 @@ combined_occupancy_plot <- ggplot(combined_occupancy_data, aes(x = time, y = avg
 ggsave("Plots/combined_rent_trend.png", plot = combined_rent_plot, width = 8, height = 5, dpi = 300)
 ggsave("Plots/combined_availability_trend.png", plot = combined_avail_plot, width = 8, height = 5, dpi = 300)
 ggsave("Plots/combined_occupancy_trend.png", plot = combined_occupancy_plot, width = 8, height = 5, dpi = 300)
-
-
-
-
 
 
