@@ -26,7 +26,7 @@ mean(DiD_data$unemployment_centered, na.rm = TRUE)  # Should return ~0
 DiD_data$post <- ifelse(as.numeric(DiD_data$year) > 2019, 1, 0)
 DiD_data$manh <- ifelse(DiD_data$market == "Manhattan", 1, 0)
 DiD_data$interaction <- DiD_data$post*DiD_data$manh
-DiD <- lm(formula = overall_rent ~ manh + post + interaction, data = DiD_data)
+DiD_LA <- lm(formula = overall_rent ~ manh + post + interaction, data = DiD_data)
 
 tDiD <- lm(formula = overall_rent~ manh + post + +unemployment_rate + interaction + post*unemployment_rate + 
              manh*unemployment_rate + interaction*unemployment_rate, data = DiD_data)
